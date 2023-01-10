@@ -1,7 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
+from django.shortcuts import redirect
+
+
 
 def index(request):
     return render(request,'index.html',{
@@ -21,9 +23,7 @@ def login_view(request):
         user = authenticate(username=username, password=password)
         if user:
             login(request,user)
-            print('Usuario autenticado')
-        else:
-            print('Usuario no autenticado')
+            return redirect('index')
         
     return render(request,'users/login.html',{
         
