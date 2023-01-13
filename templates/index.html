@@ -3,15 +3,12 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <h1>{{title}}</h1>
+            <h1>{{message}}</h1>
             <ul class="list-group">
-                {% for product in products %}
+                {% for product in product_list %}
                 <li class="list-group-item">
-                    {{product.title}}
-                    <span>                     
-                        <span class="text-success">${{product.price}}</span>
-                        
-                    </span>
+                    {{product.title}}                   
+                    <span class="text-success">${{product.price}}</span>
                 </li>
                 {% endfor %}
             </ul>
