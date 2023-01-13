@@ -22,6 +22,8 @@ def index(request):
             ]
     })
 def login_view(request):
+    if request.user.is_authenticated:
+        return redirect('index')
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -32,7 +34,6 @@ def login_view(request):
             return redirect('index')
         else:
             messages.error(request,'Usuario o contraseña no validos')
-        
     return render(request,'users/login.html',{
         
     })
@@ -41,13 +42,11 @@ def logout_view(request):
     messages.success(request,'Sesión cerrada exitosamente')
     return redirect('login')
 def register(request):
+    if request.user.is_authenticated:
+        return redirect('index')
     form = RegisterForm(request.POST or None)
     if request.method =='POST' and form.is_valid():
-        username=form.cleaned_data.get('username')
-        email=form.cleaned_data.get('email')
-        password=form.cleaned_data.get('password')
-        
-        user = User.objects.create_user(username,email,password)
+        user = form.save()
         if user:
             login(request, user)
             messages.success(request, 'Usuario creado exitosamente')
