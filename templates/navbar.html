@@ -1,37 +1,46 @@
 {% url 'index' as index %}
 {% url 'login' as login %}
 {% url 'register' as register %}
+{% url 'carts:cart' as cart %}
+
 
 <nav class="navbar fix-top navbar-expand-md bg-dark navbar-dark">
-    <div class="container">
+    <div class="container-fluid">
         <a href="{{index}}" class="navbar-brand">Facilito Store</a>
         <button type="button" class="navbar-toggler navbar-toggler-right" data-bs-toggle="collapse" data-bs-target="#navba">
             <span class="navbar-toggler-icon"></span>
         </button>
-    </div>
-    <div id="navba" class="collapse navbar-collapse hide">
-        <ul class="navbar-nav ms-auto">
-            {% if user.is_authenticated %}
+        <div id="navba" class="collapse navbar-collapse hide">
+           <ul class="navbar-nav">
             <li class="navbar-item">
-                <a href="{% url 'logout' %}" class="nav-link">
-                    <span class="fas fa-sign-in-alt "></span>
-                    Logout
+                <a href="{{cart}}" class="nav-link {% if request.path == cart %}active{% endif %}">
+                    Mi carro <span class="fa fa-shopping-cart"></span>
                 </a>
             </li>
-            {% else %}
-            <li class="navbar-item ">
-                <a href="{{login}}" class="nav-link {% if request.path == login %}active{% endif %}">
-                    <span class="fas fa-user "></span>
-                    Login
-                </a>
-            </li>
-            <li class="navbar-item ">
-                <a href="{{register}}" class="nav-link {% if request.path == register %}active{% endif %}">
-                    <span class="fas fa-user-plus "></span>
-                    Registro
-                </a>
-            </li>
-            {% endif %}
-        </ul>
+           </ul>
+            <ul class="navbar-nav ms-auto">
+                {% if user.is_authenticated %}
+                <li class="navbar-item">
+                    <a href="{% url 'logout' %}" class="nav-link">
+                        <span class="fas fa-sign-in-alt "></span>
+                        Logout
+                    </a>
+                </li>
+                {% else %}
+                <li class="navbar-item ">
+                    <a href="{{login}}" class="nav-link {% if request.path == login %}active{% endif %}">
+                        <span class="fas fa-user "></span>
+                        Login
+                    </a>
+                </li>
+                <li class="navbar-item ">
+                    <a href="{{register}}" class="nav-link {% if request.path == register %}active{% endif %}">
+                        <span class="fas fa-user-plus "></span>
+                        Registro
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
     </div>
 </nav>
