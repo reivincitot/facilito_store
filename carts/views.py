@@ -10,7 +10,7 @@ def cart(request):
     
     
     return render(request,'carts/cart.html',{
-        
+        'cart':cart
     })
     
 def add(request):
