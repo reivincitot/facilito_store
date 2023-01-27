@@ -7,11 +7,14 @@
 </div>
 <div class="col">
     <div class="h1">{{product.title}}</div>
-    <div class="h5 font-weight-bold">
-        Precio: <span class="text-danger">${{product.price}}</span>
+    <div class="h5 mt-2">
+       <p class="fw-bold"> Precio: <span class="text-danger">${{product.price}}</span></p>
     </div>
     <div class="">
         <p>{{product.description}}</p>
+    </div>
+    <div>
+        {% include 'carts/snippets/add.html' %}
     </div>
 </div>
 {% endblock  %}
