@@ -30,6 +30,9 @@ class Cart(models.Model):
     def update_total(self):
         self.total= self.subtotal + (self.subtotal * decimal.Decimal(Cart.FEE) )
         self.save()
+        
+    def products_related(self):
+        return self.cartproducts_set.select_related('product')
       
 class CartProducts(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
