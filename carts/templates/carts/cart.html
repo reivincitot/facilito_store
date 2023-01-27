@@ -31,7 +31,7 @@
                         </th>
                         <th>{{cp.quantity}}</th>                      {% comment %} th4 {% endcomment %}
                         <th>                            {% comment %} th5 {% endcomment %}
-                        <p class="fw-bold"><span class= "text-danger">{{product.price | price_format}}</span></p>
+                        <p class="fw-bold"><span class="text-danger">{{product.price | price_format}}</span></p>
                         </th>
                     </tr>
                 {% endwith %}
@@ -42,7 +42,7 @@
 <div class="col">
     <div class="card">
         <div class="card-body">
-            <p class="fw-bold">Subtotal ({{cart.products.count}}): <span class="text-danger">{{cart.subtotal| price_format}}</span></p>
+            <p class="fw-bold">Subtotal({{cart.products.count}}): <span class="text-danger">{{cart.subtotal| price_format}}</span></p>
             <a href="#" class="btn btn-warning mt-2">Proceder al pago</a>
         </div>
     </div>
