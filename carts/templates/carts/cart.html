@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load product_extras %}
+
 {% block content %}
+
 {% if cart.products.exists %}
 <div class="col-8">
     <table class="table">
@@ -28,17 +30,21 @@
                     </th>
                     <th>1</th>                      {% comment %} th4 {% endcomment %}
                     <th>                            {% comment %} th5 {% endcomment %}
-                        <span class= "font-wight-bold text-danger">{{product.price | price_format}}  </span>
+                       <p class="fw-bold"><span class= "text-danger">{{product.price | price_format}}</span></p>
                     </th>
-
                 </tr>
             {% endfor %}
         </tbody>
     </table>
-    <div class="col">
-     
-    </div>
 </div> 
+<div class="col">
+    <div class="card">
+        <div class="card-body">
+            <p class="fw-bold">Subtotal ({{cart.products.count}}): <span class="text-danger">{{cart.subtotal| price_format}}</span></p>
+            <a href="#" class="btn btn-warning mt-2">Proceder al pago</a>
+        </div>
+    </div>
+</div>
 {% else %}
 <div class="col">
     <p class="h3">Tu carro de compras está vacío</p>
