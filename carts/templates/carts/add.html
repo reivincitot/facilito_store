@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load product_extras %}
+{% load cart_extras %}
 
 
 {% block content %}
@@ -10,8 +11,8 @@
     {% endif %}
 </div>
 <div class="col">
-    <div class="h3 text-success">
-        <p fw-bold>Producto agregado al carro de compras</p>
+    <div class="h2 text-success">
+        <p fw-bold>{{ quantity | quantity_add_format}} al carro</p>
     </div>
     <div class="">
         <a class="nav-link fw-bold p-0" href="{% url 'products:product' product.slug %}">
