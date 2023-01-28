@@ -16,7 +16,8 @@ urlpatterns = [
     path('usuarios/register', views.register, name='register'),
     path('admin/', admin.site.urls),
     path('productos/',include('products.urls')),
-    path('carrito/',include('carts.urls'))
+    path('carrito/',include('carts.urls')),
+    path('orden/',include('orders.urls'))
 ]
 
 if settings.DEBUG:
