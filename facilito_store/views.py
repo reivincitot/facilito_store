@@ -8,6 +8,7 @@ from django.contrib.auth import logout
 from users.models import User
 from .forms import RegisterForm
 from products.models import Product
+from django.http import HttpResponseRedirect
 
 
 
@@ -29,6 +30,8 @@ def login_view(request):
         if user:
             login(request,user)
             messages.success(request,'Bienvenido {}'.format(user.username))
+            if request.GET.get('next'):
+                return HttpResponseRedirect(request.GET['next'])
             return redirect('index')
         else:
             messages.error(request,'Usuario o contraseña no validos')
