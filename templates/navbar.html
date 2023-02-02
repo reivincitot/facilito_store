@@ -18,11 +18,13 @@
                         Mi carro <span class="fa fa-shopping-cart"></span>
                     </a>
                 </li>
-                <li class="navbar-item">
-                    <a href="{{shipping_addresses}}" class="nav-link {% if request.path == shipping_addresses %}active{% endif %}">
-                        Mis direcciones <span class="fa fa-location-dot"></span>
-                    </a>
-                </li>  
+                {% if user.is_authenticated %}
+                    <li class="navbar-item">
+                        <a href="{{shipping_addresses}}" class="nav-link {% if request.path == shipping_addresses %}active{% endif %}">
+                            Mis direcciones <span class="fa fa-location-dot"></span>
+                        </a>
+                    </li>
+                {% endif %}
             </ul>
             <ul class="navbar-nav ms-auto">
                 {% if user.is_authenticated %}
