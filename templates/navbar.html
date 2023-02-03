@@ -2,6 +2,7 @@
 {% url 'login' as login %}
 {% url 'register' as register %}
 {% url 'carts:cart' as cart %}
+{% url 'shipping_addresses:shipping_addresses' as shipping_addresses %}
 
 
 <nav class="navbar fix-top navbar-expand-md bg-dark navbar-dark">
@@ -11,13 +12,20 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div id="navba" class="collapse navbar-collapse hide">
-           <ul class="navbar-nav">
-            <li class="navbar-item">
-                <a href="{{cart}}" class="nav-link {% if request.path == cart %}active{% endif %}">
-                    Mi carro <span class="fa fa-shopping-cart"></span>
-                </a>
-            </li>
-           </ul>
+            <ul class="navbar-nav">
+                <li class="navbar-item">
+                    <a href="{{cart}}" class="nav-link {% if request.path == cart %}active{% endif %}">
+                        Mi carro <span class="fa fa-shopping-cart"></span>
+                    </a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li class="navbar-item">
+                        <a href="{{shipping_addresses}}" class="nav-link {% if request.path == shipping_addresses %}active{% endif %}">
+                            Mis direcciones <span class="fa fa-location-dot"></span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
             <ul class="navbar-nav ms-auto">
                 {% if user.is_authenticated %}
                 <li class="navbar-item">
