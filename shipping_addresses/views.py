@@ -1,11 +1,15 @@
 from .models import ShippingAddress
-from django.shortcuts import redirect
-from django.contrib import messages
-from django.shortcuts import render
 from .forms import ShippingAddressForm
+from django.shortcuts import render
+from django.shortcuts import redirect
+from django.urls import reverse 
 from django.views.generic.list import ListView
+from django.views.generic.edit import UpdateView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
+
 
 
 # Create your views here.
@@ -16,6 +20,18 @@ class ShippingAddressListView(LoginRequiredMixin, ListView):
     
     def get_queryset(self):
         return ShippingAddress.objects.filter(user=self.request.user).order_by('-default')
+
+class ShippingAddressUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    login_url = 'login'
+    model = ShippingAddress
+    form_class = ShippingAddressForm
+    template_name = 'shipping_addresses/update.html'
+    success_message = 'Dirección actualizada exitosamente'
+    
+    def get_success_url(self):
+        return reverse('shipping_addresses:shipping_addresses')
+    
+    
 
 @login_required(login_url='login')   
 def create(request):
@@ -34,3 +50,4 @@ def create(request):
     return render(request, 'shipping_addresses/create.html',{
         'form':form
     })
+    
