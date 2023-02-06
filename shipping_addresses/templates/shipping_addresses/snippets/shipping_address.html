@@ -8,16 +8,18 @@
         <div class="card-title">
             {{shipping_address.postal_code}}
         </div>
-        <div class="mt-2">
-            <a href="{% url 'shipping_addresses:update' shipping_address.pk %}" class="btn btn-info fw-bold">Editar</a>
-            {% if shipping_address.default %}
-            <div class="text-danger mt-2">
-                Dirección Principal
+        {% if edit %}
+            <div class="mt-2">
+                <a href="{% url 'shipping_addresses:update' shipping_address.pk %}" class="btn btn-info fw-bold">Editar</a>
+                {% if shipping_address.default %}
+                <div class="text-danger mt-2">
+                    Dirección Principal
+                </div>
+                {% else %}
+                <a href="{% url 'shipping_addresses:default' shipping_address.pk %}" class="btn btn-success fw-bold">Default</a>
+                <a href="{% url 'shipping_addresses:delete' shipping_address.pk %}" class="btn btn-danger fw-bold">Eliminar</a>
+                {% endif %}
             </div>
-            {% else %}
-            <a href="{% url 'shipping_addresses:default' shipping_address.pk %}" class="btn btn-success fw-bold">Default</a>
-            <a href="{% url 'shipping_addresses:delete' shipping_address.pk %}" class="btn btn-danger fw-bold">Eliminar</a>
-            {% endif %}
-        </div>
+        {% endif %}
     </div>
 </div>
