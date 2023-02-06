@@ -22,10 +22,11 @@ def address(request):
     cart = get_or_create_cart(request)
     order = get_or_create_order(cart,request)
     
-    shipping_adrress = order.shipping_address
+    shipping_adrress = order.get_or_set_shipping_address()
         
     return render(request,'orders/address.html',{
-        'cart':cart,
+        'cart': cart,
         'order': order,
+        'shipping_address': shipping_adrress,
         'breadcrumb': breadcrumb(address=True)
     })
