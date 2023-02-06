@@ -19,7 +19,8 @@
                 Registra tu dirección de envío
             </div>
             <div class="fw-bold">
-                <a href="{% url 'shipping_addresses:create' %}" class="nav-link">Nueva dirección de envío</a>
+                {% url 'orders:address' as next_url %}
+                <a href="{% url 'shipping_addresses:create' %}?next={{next_url}}" class="nav-link">Nueva dirección de envío</a>
             </div>
         {% endif %}
     </div>
