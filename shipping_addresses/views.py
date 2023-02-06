@@ -1,17 +1,29 @@
 from .models import ShippingAddress
 from .forms import ShippingAddressForm
+
+from django.http import HttpResponseRedirect
+
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
+
 from django.urls import reverse_lazy
 from django.urls import reverse 
+
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView
 from django.views.generic.edit import DeleteView
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+
+from carts.views import cart
+
+from orders.utils import get_or_create_order
+
+from carts.utils import get_or_create_cart
 
 
 
@@ -65,6 +77,14 @@ def create(request):
         shipping_address.default = not request.user.has_shipping_address()
         
         shipping_address.save()
+        
+        if request.GET.get('next'):
+            if request.GET['next'] == reverse('orders:address'):
+                cart = get_or_create_cart(request)
+                order = get_or_create_order(cart,request)
+                
+                order.update_shipping_addres(shipping_address)
+                return HttpResponseRedirect(request.GET['next'])
     
         messages.success(request,'Dirección creada exitosamente')
         return redirect('shipping_addresses:shipping_addresses')
