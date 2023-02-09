@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load product_extras %}
+{% load cart_extras %}
+
+
+{% block content %}
+<div class="col-3">
+
+    {% if product.image %}
+    <img src="{{product.image.url}}" alt="Imagen del producto" width="200" height='200'>
+    {% endif %}
+</div>
+<div class="col">
+    <div class="h2 text-success">
+        <p fw-bold>{{ quantity | quantity_add_format}} al carro</p>
+    </div>
+    <div class="">
+        <a class="nav-link fw-bold p-0" href="{% url 'products:product' product.slug %}">
+        {{product.title}}
+        </a>
+    </div>
+    <div class="text-danger mt-2">
+        <p class="fw-bold">
+            <span>{{product.price | price_format}}</span>
+        </p>
+    </div>
+    <div>
+        <a href="{% url 'index' %}" class="btn btn-primary">Seguir comprando</a>
+        <a href="{% url 'carts:cart' %}" class="btn btn-info">Ver carro</a>
+    </div>
+</div>
+{% endblock  %}
