@@ -3,6 +3,7 @@
 {% url 'register' as register %}
 {% url 'carts:cart' as cart %}
 {% url 'shipping_addresses:shipping_addresses' as shipping_addresses %}
+{% url 'orders:completeds' as completeds %}
 
 
 <nav class="navbar fix-top navbar-expand-md bg-dark navbar-dark">
@@ -22,6 +23,11 @@
                     <li class="navbar-item">
                         <a href="{{shipping_addresses}}" class="nav-link {% if request.path == shipping_addresses %}active{% endif %}">
                             Mis direcciones <span class="fa fa-location-dot"></span>
+                        </a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="{{completeds}}" class="nav-link {% if request.path == completeds %}active{% endif %}">
+                            Mis Pedidos <span class="fa fa-shipping-fast"></span>
                         </a>
                     </li>
                 {% endif %}
