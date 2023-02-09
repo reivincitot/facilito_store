@@ -1,4 +1,4 @@
-from .models import Order
+from .mails import Mail
 
 from django.shortcuts import render
 from django.shortcuts import redirect
@@ -109,6 +109,7 @@ def complete(request):
         return redirect('carts:cart')
     
     order.complete()
+    Mail.send_complete_order(order,request.user)
     
     destroy_cart(request)
     destroy_order(request)
