@@ -1,21 +1,17 @@
 import threading
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-
 from django.shortcuts import get_object_or_404, redirect, render
-
 from django.views.generic import ListView
 
 from carts.utils import destroy_cart, get_or_create_cart
 from shipping_addresses.models import ShippingAddress
 
-from .mails import Mail
-
-from .utils import breadcrumb, destroy_order, get_or_create_order
-
 from .decorators import validate_cart_and_order
-
+from .mails import Mail
+from .utils import breadcrumb, destroy_order, get_or_create_order
 
 # Create your views here.
 
