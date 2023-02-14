@@ -4,6 +4,7 @@
 {% url 'carts:cart' as cart %}
 {% url 'shipping_addresses:shipping_addresses' as shipping_addresses %}
 {% url 'orders:completeds' as completeds %}
+{% url 'billing_profiles:create' as billing_profiles %}
 
 
 <nav class="navbar fix-top navbar-expand-md bg-dark navbar-dark">
@@ -28,6 +29,11 @@
                     <li class="navbar-item">
                         <a href="{{completeds}}" class="nav-link {% if request.path == completeds %}active{% endif %}">
                             Mis Pedidos <span class="fa fa-shipping-fast"></span>
+                        </a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="{{billing_profiles}}" class="nav-link {% if request.path == billing_profiles %}active{% endif %}">
+                            Mis métodos de pago <span class="fab fa-cc-stripe"></span>
                         </a>
                     </li>
                 {% endif %}
