@@ -132,6 +132,9 @@ EMAIL_HOST_USER = config ('USER_MAIL')
 EMAIL_HOST_PASSWORD = config ('USER_MAIL_PASSWORD' ) #Env
 EMAIL_USE_TLS = True
 
+STRIPE_PUBLIC_KEY ='STRIPE_PUBLIC_KEY'
+STRIPE_PRIVEATE_KEY = 'STRIPE_PRIVATE_KEY'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/

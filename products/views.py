@@ -7,10 +7,12 @@ from django.db.models import Q
 class ProductListView(ListView):
     template_name = 'index.html'
     queryset = Product.objects.all().order_by('-id')
+    paginate_by = 2
     
     def get_context_data(self, **kwargs):
         contex = super().get_context_data(**kwargs)
         contex['message']='Listado de productos'
+      
         return contex
 class ProductDetailView(DetailView):
     model = Product

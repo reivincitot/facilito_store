@@ -10,7 +10,8 @@
 <nav class="navbar fix-top navbar-expand-md bg-dark navbar-dark">
     <div class="container-fluid">
         <a href="{{index}}" class="navbar-brand">Facilito Store</a>
-        <button type="button" class="navbar-toggler navbar-toggler-right" data-bs-toggle="collapse" data-bs-target="#navba">
+        <button type="button" class="navbar-toggler navbar-toggler-right" data-bs-toggle="collapse"
+            data-bs-target="#navba">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div id="navba" class="collapse navbar-collapse hide">
@@ -21,21 +22,23 @@
                     </a>
                 </li>
                 {% if user.is_authenticated %}
-                    <li class="navbar-item">
-                        <a href="{{shipping_addresses}}" class="nav-link {% if request.path == shipping_addresses %}active{% endif %}">
-                            Mis direcciones <span class="fa fa-location-dot"></span>
-                        </a>
-                    </li>
-                    <li class="navbar-item">
-                        <a href="{{completeds}}" class="nav-link {% if request.path == completeds %}active{% endif %}">
-                            Mis Pedidos <span class="fa fa-shipping-fast"></span>
-                        </a>
-                    </li>
-                    <li class="navbar-item">
-                        <a href="{{billing_profiles}}" class="nav-link {% if request.path == billing_profiles %}active{% endif %}">
-                            Mis métodos de pago <span class="fab fa-cc-stripe"></span>
-                        </a>
-                    </li>
+                <li class="navbar-item">
+                    <a href="{{shipping_addresses}}"
+                        class="nav-link {% if request.path == shipping_addresses %}active{% endif %}">
+                        Mis direcciones <span class="fa fa-location-dot"></span>
+                    </a>
+                </li>
+                <li class="navbar-item">
+                    <a href="{{completeds}}" class="nav-link {% if request.path == completeds %}active{% endif %}">
+                        Mis Pedidos <span class="fa fa-shipping-fast"></span>
+                    </a>
+                </li>
+                <li class="navbar-item">
+                    <a href="{{billing_profiles}}"
+                        class="nav-link {% if request.path == billing_profiles %}active{% endif %}">
+                        Mis métodos de pago <span class="fab fa-cc-stripe"></span>
+                    </a>
+                </li>
                 {% endif %}
             </ul>
             <ul class="navbar-nav ms-auto">
